@@ -7,7 +7,8 @@ import subprocess
 
 from utils import func
 
-logger = logging.getLogger('azure.vm.ip')
+logger = logging.getLogger('azcli.vm.ip')
+
 
 def get_ip_info(group, vm):
     cmd = "az vm list-ip-addresses -g %s -n %s" % (group, vm)
@@ -38,6 +39,7 @@ def deallocate_vm(group, vm):
         raise e
     except Exception as e:
         raise e
+
 
 def start_vm(group, vm):
     cmd = "az vm start -g %s -n %s" % (group, vm)

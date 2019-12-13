@@ -11,18 +11,17 @@ logger = logging.getLogger('azcli.utils.func')
 def run_cmd(cmd):
     create_app = subprocess.run(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     stderr = create_app.stderr.decode("utf-8")
-    if create_app.returncode != 0 or stderr != '':
+    if create_app.returncode != 0:
         raise Exception('run cmd with error: %s' % stderr)
-    return json.loads(create_app.stdout.decode("utf-8"))
+    return create_app.stdout.decode("utf-8")
 
 
 def check_connection(app_url):
     cmd = 'curl %s' % app_url
     try:
         out = run_cmd(cmd)
-        out = json.loads(out)
         logger.debug('stdout: %s' % out)
-        if 'Connection Check' in out:
+        if 'Connection Check!' in out:
             return True
         return False
     except subprocess.CalledProcessError as e:
@@ -32,5 +31,13 @@ def check_connection(app_url):
         raise e
 
 
-def setup_app():
+def init_app():
+    """
+    steps
+        1.cp app.y into vm
+        2.sudo apt install python-pip
+        3.pip install flask
+        4.sudo python app.py &
+    :return:None
+    """
     pass

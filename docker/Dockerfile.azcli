@@ -1,0 +1,6 @@
+# Dockerfile for azcli
+
+FROM mcr.microsoft.com/azure-cli:latest
+MAINTAINER LorraineLiu <410169554@qq.com>
+
+ADD tmp/azcli /

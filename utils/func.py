@@ -10,12 +10,10 @@ logger = logging.getLogger('azcli.utils.func')
 
 def run_cmd(cmd):
     create_app = subprocess.run(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    if create_app.returncode != 0:
-        raise subprocess.CalledProcessError()
     stderr = create_app.stderr.decode("utf-8")
-    if stderr == '':
-        return json.loads(create_app.stdout.decode("utf-8"))
-    raise Exception('run cmd with error: %s' % stderr)
+    if create_app.returncode != 0 or stderr != '':
+        raise Exception('run cmd with error: %s' % stderr)
+    return json.loads(create_app.stdout.decode("utf-8"))
 
 
 def check_connection(app_url):

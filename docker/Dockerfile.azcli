@@ -3,4 +3,5 @@
 FROM mcr.microsoft.com/azure-cli:latest
 MAINTAINER LorraineLiu <410169554@qq.com>
 
-ADD tmp/azcli /
+RUN mkdir -p /src/azcli
+ADD tmp/azcli /src/azcli

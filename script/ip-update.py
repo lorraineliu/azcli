@@ -3,10 +3,10 @@ from __future__ import absolute_import, division, print_function
 
 import logging
 import time
+
+import click
 from utils import func
 from vm import ip
-import click
-
 
 logger = logging.getLogger('azcli.script.update_ip')
 
@@ -20,13 +20,14 @@ def cli():
 @click.argument('group')
 @click.argument('vm')
 def ip_assign(group, vm):
+    import pdb; pdb.set_trace()
     while True:
         try:
             ip_info = ip.get_ip_info(group, vm)
             public_ip = ip_info.get('ip_address', '')
             if ip_info['ip_allcation_method'] is not 'Dynamic':
                 raise Exception('ip: %s is not Dynamic' % public_ip)
-            url = 'htpp://%s:%s' % (public_ip, 80)
+            url = 'http://%s:%s' % (public_ip, 80)
             time.sleep(5)
             if func.check_connection(url) is not True:
                 ip.deallocate_vm(group, vm)

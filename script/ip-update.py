@@ -20,7 +20,6 @@ def cli():
 @click.argument('group')
 @click.argument('vm')
 def ip_assign(group, vm):
-    import pdb; pdb.set_trace()
     while True:
         try:
             ip_info = ip.get_ip_info(group, vm)

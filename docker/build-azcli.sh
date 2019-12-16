@@ -3,7 +3,7 @@ tmp_dir='tmp/azcli/'
 
 if [ "$1" ];then
     tag="$1"
-    build_tag="gdapenny/study/azcli:$tag"
+    build_tag="azcli:$tag"
     git clone -b $tag --single-branch https://github.com/lorraineliu/azcli.git $tmp_dir
     pushd $tmp_dir
     /bin/rm -rf .git

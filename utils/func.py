@@ -5,7 +5,9 @@ import json
 import logging
 import subprocess
 
-logger = logging.getLogger('azcli.utils.func')
+from utils import logs
+
+logger = logs.file_logger
 
 
 def run_cmd(cmd):

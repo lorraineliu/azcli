@@ -5,10 +5,10 @@ import logging
 import time
 
 import click
-from utils import func
+from utils import func, logs
 from vm import ip
 
-logger = logging.getLogger('azcli.script.update_ip')
+logger = logs.file_logger
 
 
 @click.group()

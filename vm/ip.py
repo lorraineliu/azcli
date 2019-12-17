@@ -5,9 +5,9 @@ import json
 import logging
 import subprocess
 
-from utils import func
+from utils import func, logs
 
-logger = logging.getLogger('azcli.vm.ip')
+logger = logs.file_logger
 
 
 def get_ip_info(group, vm):

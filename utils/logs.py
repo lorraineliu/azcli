@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import, division, print_function
 
+import logging
 import logging.config
 
 
@@ -25,10 +26,6 @@ config = {
         },
     },
     'loggers': {
-        'StreamLogger': {
-            'handlers': ['console'],
-            'level': 'DEBUG',
-        },
         'FileLogger':  {
             'handlers': ['console', 'file'],
             'level': 'DEBUG',
@@ -37,5 +34,5 @@ config = {
 }
 
 logging.config.dictConfig(config)
-StreamLogger = logging.getLogger("StreamLogger")
-FileLogger = logging.getLogger("FileLogger")
+stream_logger = logging.getLogger("StreamLogger")
+file_logger = logging.getLogger("FileLogger")

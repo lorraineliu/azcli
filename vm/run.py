@@ -10,8 +10,8 @@ from utils import func, logs
 logger = logs.file_logger
 
 
-def init_app():
-    cmd = "az vm run-command invoke -g %s -n %s --command-id RUnShellScript --scripts \"pip3 install flask && python3 /home/test01/app.py &\""
+def init_app(g, vm):
+    cmd = "az vm run-command invoke -g %s -n %s --command-id RUnShellScript --scripts \"pip3 install flask && python3 /home/test01/app.py &\"" % (g, vm)
     try:
         out = func.run_cmd(cmd)
         logger.debug('init_app stdout: %s' % out)
@@ -23,8 +23,8 @@ def init_app():
         raise e
 
 
-def start_app():
-    cmd = "az vm run-command invoke -g %s -n %s --command-id RUnShellScript --scripts \"python3 /home/test01/app.py &\""
+def start_app(g, vm):
+    cmd = "az vm run-command invoke -g %s -n %s --command-id RUnShellScript --scripts \"python3 /home/test01/app.py &\"" %  (g, vm)
     try:
         out = func.run_cmd(cmd)
         logger.debug('start_app stdout: %s' % out)

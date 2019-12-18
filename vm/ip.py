@@ -23,9 +23,10 @@ def get_ip_info(group, vm):
             name=name
         )
     except subprocess.CalledProcessError as e:
-        logger.debug('fail to run cmd: %s' % e)
+        logger.error('fail to run get_ip_info cmd: %s' % e)
         raise e
     except Exception as e:
+        logger.error('fail to run get_ip_info cmd: %s' % e)
         raise e
 
 
@@ -33,11 +34,12 @@ def deallocate_vm(group, vm):
     cmd = "az vm deallocate -g %s -n %s" % (group, vm)
     try:
         out = func.run_cmd(cmd)
-        logger.debug('stdout: %s' % out)
+        logger.debug('deallocate_vm stdout: %s' % out)
     except subprocess.CalledProcessError as e:
-        logger.debug('fail to run cmd: %s' % e)
+        logger.error('fail to run deallocate_vm cmd: %s' % e)
         raise e
     except Exception as e:
+        logger.error('fail to run deallocate_vm cmd: %s' % e)
         raise e
 
 
@@ -45,9 +47,10 @@ def start_vm(group, vm):
     cmd = "az vm start -g %s -n %s" % (group, vm)
     try:
         out = func.run_cmd(cmd)
-        logger.debug('stdout: %s' % out)
+        logger.debug('start_vm stdout: %s' % out)
     except subprocess.CalledProcessError as e:
-        logger.debug('fail to run cmd: %s' % e)
+        logger.error('fail to run start_vm cmd: %s' % e)
         raise e
     except Exception as e:
+        logger.error('fail to run start_vm cmd: %s' % e)
         raise e
